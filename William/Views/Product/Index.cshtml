@@ -1,0 +1,51 @@
+﻿@model William.ViewModels.ProductIndexViewModel
+@{
+    ViewBag.Title = "Index";
+}
+@*@if (Request.IsAuthenticated)
+    {
+        @Html.ActionLink("Create", "Create", new { id = Model.CategoryId })
+    }*@
+
+<h2>@Html.DisplayFor(model => model.CategoryName)</h2>
+<table class="table">
+    <thead>
+    <tr>
+        <th>@Html.ActionLink("Name", "Index", new { sort = Model.SortOrderName })</th>
+        <th>Description</th>
+        <th>@Html.ActionLink("Price", "Index", new { sort = Model.SortOrderPrice })</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.ProductList)
+    {
+        <tr>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @item.Description
+            </td>
+            <td>
+                @item.Price
+            </td>
+            @if (Request.IsAuthenticated)
+            {
+                <td>
+                    @Html.ActionLink("Edit ", "Edit", new { id = item.ProductId }) |
+                    @Html.ActionLink("Edit ", "Delete", new { id = item.ProductId })
+                </td>
+            }
+        </tr>
+    }
+    </tbody>
+
+
+
+
+</table>
+
+@if (Request.IsAuthenticated)
+{
+    @Html.ActionLink("Create", "Create", new { id = Model.CategoryId })
+}

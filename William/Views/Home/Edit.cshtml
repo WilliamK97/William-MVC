@@ -1,0 +1,32 @@
+﻿@model William.ViewModels.CategoryEditViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm(FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <table class="table">
+        <tr>
+            <td>Name</td>
+            <td>
+                @Html.HiddenFor(model => model.CategoryId)
+                @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Name)
+            </td>
+        </tr>
+    </table>
+
+    <input type="submit" value="Save" class="btn btn-default" />
+
+    <br />
+    <br />
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+}
